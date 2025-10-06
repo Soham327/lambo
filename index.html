@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lamborghini Showcase</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; }
+
+    /* Fullscreen Login Screen */
+    #loginScreen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(to right, #000, #434343);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000; /* always above */
+    }
+    .login-container {
+      display: flex;
+      width: 850px;
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 25px rgba(0,0,0,0.4);
+    }
+    .welcome {
+      flex: 1;
+      background: linear-gradient(to bottom right,#ffcc00,#ff9900);
+      color:#000; padding:50px; text-align:center;
+    }
+    .welcome h1 { font-size: 32px; margin-bottom: 20px; }
+    .login-box { flex: 1; padding: 40px; }
+    .login-box input, .login-box button {
+      width: 100%; padding: 14px; margin: 10px 0; border-radius: 6px;
+    }
+    .login-box button { background: #ffcc00; border: none; font-weight: bold; cursor: pointer; }
+    .login-box button:hover { background: #ff9900; }
+
+    /* Hide Lamborghini site until login */
+    #mainSite { display: none; }
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN SCREEN -->
+  <div id="loginScreen">
+    <div class="login-container">
+      <div class="welcome">
+        <h1>Welcome to Lamborghini Showcase</h1>
+        <p>Login to explore the stunning world of Lamborghini Aventador and more.</p>
+      </div>
+      <div class="login-box">
+        <h2>Login</h2>
+        <form id="loginForm">
+          <input type="text" id="username" placeholder="User Name" required>
+          <input type="password" id="password" placeholder="Password" required>
+          <button type="submit">LOGIN</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN LAMBORGHINI WEBSITE -->
+  <div id="mainSite">
+    <!-- 🚗 Paste your Lamborghini project HTML here -->
+    <header>
+
+    </header>
+  </div>
+<script>
+  document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    let user = document.getElementById("username").value;
+    let pass = document.getElementById("password").value;
+
+    if(user === "admin" && pass === "1234"){  
+        document.getElementById("loginScreen").style.display = "none"; // old code
+        document.getElementById("mainSite").style.display = "block";  // old code
+    } else {
+        alert("Invalid Username or Password!");
+    }
+  });
+</script>
+</body>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aventador Showcase</title>
+
+  <!-- Remix Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="header" id="header">
+  <nav class="nav container">
+    <a href="#" class="nav__logo">LAMBORGHINI</a>
+
+    <div class="nav__toggle" id="nav-toggle">
+      <i class="ri-menu-line" id="menu-icon"></i>
+    </div>
+
+    <div class="nav__menu" id="nav-menu">
+      <ul class="nav__list">
+        <li class="nav__item"><a href="#home" class="nav__link">Home</a></li>
+        <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+        <li class="nav__item"><a href="#models" class="nav__link">Models</a></li>
+        <li class="nav__item"><a href="#info" class="nav__link">Info</a></li>
+        <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
+      
+<!-- Search Row -->
+<div class="search-row">
+  <input type="text" id="searchInput" placeholder="Search Lamborghini...">
+  <button id="searchBtn">🔍</button>
+
+  <!-- Result will show here in same row -->
+  <div id="resultBox"></div>
+</div>
+
+<style>
+  .search-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 12px;
+    width: fit-content;
+    margin: 30px auto;
+  }
+
+  #searchInput {
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 200px;
+  }
+
+  #searchBtn {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: none;
+    background: #222;
+    color: #fddc08;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  #resultBox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    background: #fafafa;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    min-width: 220px;
+  }
+
+  #resultBox img {
+    width: 60px;
+    height: auto;
+    border-radius: 6px;
+  }
+
+  #resultBox strong {
+    display: block;
+    font-size: 14px;
+    color: #000;
+  }
+
+  #resultBox span {
+    font-size: 13px;
+    color: #fddc08;
+    font-weight: bold;
+  }
+</style>
+
+<script>
+  const cars = [
+    { name: "Lamborghini Aventador", price: "$393,695", img: "assets/img/home-car-3.png" },
+    { name: "Lamborghini Huracan", price: "$261,274", img: "assets/img/model-car-1.png" },
+    { name: "Lamborghini Urus", price: "$225,500", img: "assets/img/model-car-2.png" }
+  ];
+
+  const input = document.getElementById('searchInput');
+  const btn = document.getElementById('searchBtn');
+  const resultBox = document.getElementById('resultBox');
+
+  function searchCar() {
+    const q = input.value.toLowerCase().trim();
+    const found = cars.find(c => c.name.toLowerCase().includes(q));
+
+    if (found) {
+      resultBox.innerHTML = `
+        <img src="${found.img}" alt="${found.name}">
+        <div>
+          <strong>${found.name}</strong>
+          <span>${found.price}</span>
+        </div>
+      `;
+    } else {
+      resultBox.innerHTML = `<span style="color:red;">No Lamborghini found!</span>`;
+    }
+    input.value = '';
+  }
+
+  btn.addEventListener('click', searchCar);
+  input.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      searchCar();
+    }
+  });
+</script>
+
+<!-- Cars Section -->
+<div id="carsList"></div>
+
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
+  <!-- Main -->
+  <main class="main">
+    <!-- Home -->
+    <section class="home section" id="home">
+      <div class="home__content container">
+        <h1 class="home__title">Lamborghini Aventador</h1>
+        <p class="home__subtitle">Unleashing Power. Designed for Speed.</p>
+        <a href="#models" class="button">Explore Models</a>
+       <img src="assets/img/home-car-2.png" alt="Lamborghini" class="home__img">
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="about section" id="about">
+  <div class="container grid">
+    <div class="about__content">
+      <h2 class="section__title">About Us</h2>
+      <p class="about__description">
+        The Lamborghini Aventador is the pinnacle of Italian automotive excellence, combining extreme performance, advanced engineering, and unmistakable style. Launched as a successor to the Murciélago, the Aventador represents a leap forward in Lamborghini’s super sports car lineage.
+      </p>
+      <p class="about__description">
+        With a powerful V12 engine, lightweight carbon fiber chassis, and sharp aerodynamic design, the Aventador offers a driving experience like no other. It's not just a car — it’s a statement of speed, strength, and innovation.
+      </p>
+      <p class="about__description">
+        From the streets to the track, the Aventador embodies precision, luxury, and heritage. Every line and contour is engineered with performance in mind, while inside the cockpit, drivers are surrounded by futuristic technology and handcrafted luxury.
+      </p>
+      <video src="assets/img/about-vid.mp4" controls class="about__video"></video>
+    </div>
+  </div>
+</section>
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lamborghini Models</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    h2.section__title {
+      font-size: 2rem;
+      margin: 2rem 0;
+    }
+
+    /* Models grid */
+    .models__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    .models__card {
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .models__card:hover {
+      transform: translateY(-5px);
+    }
+
+    .models__card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .models__card h3 {
+      margin: 1rem 0;
+    }
+
+    /* Modal overlay */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(3px);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    /* Modal */
+    .modal {
+      background: #c91414;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      max-width: 500px;
+      width: 90%;
+      text-align: left;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      position: relative;
+    }
+
+    .modal img {
+      width: 100%;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .modal h3 {
+      margin-top: 0;
+    }
+
+    .modal .price {
+      font-size: 1.2rem;
+      color: #e6b800;
+      font-weight: bold;
+      margin: 0.5rem 0;
+    }
+
+    .modal button {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: transparent;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 class="section__title">Our Models</h2>
+  <div class="models__grid" id="modelsGrid"></div>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="scModalOverlay">
+    <div class="modal">
+      <button id="scModalClose">&times;</button>
+      <img id="scModalImg" src="" alt="Car Image">
+      <h3 id="scModalTitle"></h3>
+      <p class="price" id="scModalPrice"></p>
+      <p id="scModalDesc"></p>
+    </div>
+  </div>
+
+  <script>
+    const models = [
+      {
+        name: "Lamborghini Aventador",
+        img: "assets/img/model-car-1.png",
+        price: "$393,695",
+        desc: "The Aventador is a V12-powered flagship with aggressive styling and unmatched performance."
+      },
+      {
+        name: "Lamborghini Huracan",
+        img: "assets/img/model-car-2.png",
+        price: "$261,274",
+        desc: "The Huracan combines power and technology with a naturally aspirated V10 engine."
+      },
+      {
+        name: "Lamborghini Urus",
+        img: "assets/img/model-car-3.png",
+        price: "$221,506",
+        desc: "The Urus is the world’s first Super Sport Utility Vehicle with supercar performance."
+      },
+      {
+        name: "Lamborghini Gallardo",
+        img: "assets/img/OIP (1).webp",
+        price: "$181,900",
+        desc: "The Gallardo is an iconic V10-powered Lamborghini with timeless design."
+      },
+      {
+        name: "Lamborghini Sian",
+        img: "assets/img/OIP.webp",
+        price: "$3,600,000",
+        desc: "The Sian is a hybrid hypercar combining a V12 engine with futuristic design."
+      }
+    ];
+
+    const grid = document.getElementById("modelsGrid");
+
+    function buildGrid(){
+      grid.innerHTML = "";
+      models.forEach((car, index) => {
+        const card = document.createElement("div");
+        card.className = "models__card";
+        card.innerHTML = `
+          <img src="${car.img}" alt="${car.name}">
+          <h3>${car.name}</h3>
+        `;
+        card.addEventListener("click", () => openDetails(car));
+        grid.appendChild(card);
+      });
+    }
+
+    // Modal logic
+    const overlay = document.getElementById('scModalOverlay');
+    const modalTitle = document.getElementById('scModalTitle');
+    const modalPrice = document.getElementById('scModalPrice');
+    const modalDesc = document.getElementById('scModalDesc');
+    const modalImg = document.getElementById('scModalImg');
+    const modalClose = document.getElementById('scModalClose');
+
+    function openDetails(data){
+      modalTitle.textContent = data.name;
+      modalPrice.textContent = data.price;
+      modalDesc.textContent = data.desc;
+      modalImg.src = data.img;
+      overlay.style.display = 'flex';
+    }
+
+    function closeDetails(){
+      overlay.style.display = 'none';
+    }
+
+    modalClose.addEventListener('click', closeDetails);
+    overlay.addEventListener('click', e=>{
+      if(e.target===overlay) closeDetails();
+    });
+    document.addEventListener('keydown', e=>{
+      if(e.key==='Escape') closeDetails();
+    });
+
+    // Build on load
+    buildGrid();
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lamborghini Models</title>
+  <style>
+    .models__grid {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .models__card {
+      border: 1px solid #ccc;
+      padding: 10px;
+      width: 200px;
+      text-align: center;
+    }
+    .models__card img {
+      width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <h2>Our Models</h2>
+  <div class="models__grid" id="modelsContainer"></div>
+
+  <script>
+    function loadModels() {
+      const container = document.getElementById("modelsContainer");
+      container.innerHTML = "";
+
+      const models = JSON.parse(localStorage.getItem("models")) || [];
+
+      if (models.length === 0) {
+        container.innerHTML = "<p>No models added yet.</p>";
+      }
+
+      models.forEach(model => {
+        const card = document.createElement("div");
+        card.classList.add("models__card");
+        card.innerHTML = `
+          <img src="${model.image}" alt="${model.name}">
+          <h3>${model.name}</h3>
+          <p>${model.description}</p>
+          <strong>${model.price}</strong>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", loadModels);
+  </script>
+</body>
+</html>
+
+
+
+  </div>
+
+  <!-- Hidden Car Details -->
+  <div id="carDetails" class="car-details"></div>
+</section>
+
+
+
+    <!-- Info -->
+    <section class="info section" id="info">
+  <div class="info__container">
+    
+    <!-- Add id="info-image" -->
+    <div class="info__image" id="info-image">
+  <img src="assets/img/model-car-3.png" alt="Blue Lamborghini Aventador">
+</div>
+
+  <!-- Add id="info-specs" -->
+    <div class="info__specs" id="info-specs">
+      <h2 class="section__title">Aventador Specifications</h2>
+      <ul class="info__list">
+        <li><strong>Engine:</strong> 6.5L V12</li>
+        <li><strong>Horsepower:</strong> 769 hp</li>
+        <li><strong>Top Speed:</strong> 350 km/h (217 mph)</li>
+        <li><strong>0-100 km/h:</strong> 2.8 seconds</li>
+        <li><strong>Transmission:</strong> 7-speed ISR</li>
+        <li><strong>Drivetrain:</strong> AWD</li>
+        <li><strong>Body:</strong> Carbon Fiber Monocoque</li>
+        <li><strong>Fuel Tank:</strong> 90 Liters</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+ <!-- Contact -->
+    <section class="contact section" id="contact">
+      <div class="container">
+        <h2 class="section__title">Contact Us</h2>
+        <p>Email: info@aventador.com<br>Phone: +123 456 7890</p>
+      </div>
+    </section>
+  </main>
+
+ 
+  <body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Admin Panel</h2>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#add-model">Add Model</a>
+    <a href="#manage-models">Manage Models</a>
+    <a href="#settings">Settings</a>
+  </div>
+
+  <!-- Main content -->
+  <div class="main-content">
+    <div class="topbar">
+      <h1>Welcome, Admin</h1>
+      <button onclick="window.location.href='index.html'" 
+      style="padding:8px 15px;border:none;background:#111;color:#fff;border-radius:5px;">
+        Logout
+      </button>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="card" id="dashboard">
+      <h2>Dashboard Overview</h2>
+      <p>Total Models: <b>3</b></p>
+      <p>New Orders: <b>5</b></p>
+      <p>Users Online: <b>12</b></p>
+    </div>
+
+    <!-- Add Model -->
+    <div class="card" id="add-model">
+      <h2>Add New Car Model</h2>
+      <form id="addModelForm">
+        <input type="text" id="carName" placeholder="Car Name" required><br>
+        <input type="text" id="carPrice" placeholder="Price" required><br>
+        <input type="text" id="carImage" placeholder="Image URL" required><br>
+        <textarea id="carDescription" placeholder="Description"></textarea><br>
+        <button type="submit">Add Model</button>
+      </form>
+    </div>
+
+    <!-- Manage Models -->
+    <div class="card" id="manage-models">
+      <h2>Existing Models</h2>
+      <table id="modelsTable">
+        <tr>
+          <th>Model</th>
+          <th>Price</th>
+          <th>Action</th>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Settings -->
+    <div class="card" id="settings">
+      <h2>Settings</h2>
+      <p>Manage admin preferences here.</p>
+    </div>
+  </div>
+
+  <script>
+    // Add model
+    document.getElementById("addModelForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("carName").value;
+      const price = document.getElementById("carPrice").value;
+      const image = document.getElementById("carImage").value;
+      const description = document.getElementById("carDescription").value;
+
+      const newModel = { name, price, image, description };
+      let models = JSON.parse(localStorage.getItem("models")) || [];
+      models.push(newModel);
+      localStorage.setItem("models", JSON.stringify(models));
+
+      alert("Car model added successfully!");
+      this.reset();
+      loadModels();
+    });
+
+    function loadModels() {
+      const modelsTable = document.getElementById("modelsTable");
+      const models = JSON.parse(localStorage.getItem("models")) || [];
+      modelsTable.innerHTML = `
+        <tr>
+          <th>Model</th>
+          <th>Price</th>
+          <th>Action</th>
+        </tr>
+      `;
+      models.forEach((m, i) => {
+        modelsTable.innerHTML += `
+          <tr>
+            <td>${m.name}</td>
+            <td>${m.price}</td>
+            <td><button onclick="deleteModel(${i})">Delete</button></td>
+          </tr>
+        `;
+      });
+    }
+
+    function deleteModel(index) {
+      let models = JSON.parse(localStorage.getItem("models")) || [];
+      models.splice(index, 1);
+      localStorage.setItem("models", JSON.stringify(models));
+      loadModels();
+    }
+
+    document.addEventListener("DOMContentLoaded", loadModels);
+  </script>
+</body>
+
+  <!-- JS -->
+ <script src="assets/js/scrollreveal.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
